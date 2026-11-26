@@ -45,51 +45,59 @@ NAMED_COLORS = [
 ]
 
 
-def build_editorial_bg_uri() -> str:
-    """Создаёт стильный тёмный фон с изящными силуэтами одежды и мягким свечением."""
+def build_stylish_light_bg_uri() -> str:
+    """Создаёт светлый фон с детализированными иллюстрациями стильной одежды."""
     svg = """
-    <svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420">
+    <svg xmlns="http://www.w3.org/2000/svg" width="440" height="440" viewBox="0 0 440 440">
       <defs>
-        <radialGradient id="glow1" cx="22%" cy="24%" r="45%">
-          <stop offset="0%" stop-color="#6366f1" stop-opacity="0.22"/>
-          <stop offset="100%" stop-color="#0b0f19" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="glow2" cx="80%" cy="72%" r="50%">
-          <stop offset="0%" stop-color="#10b981" stop-opacity="0.16"/>
-          <stop offset="100%" stop-color="#0b0f19" stop-opacity="0"/>
-        </radialGradient>
+        <linearGradient id="lightCanvas" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#faf8ff"/>
+          <stop offset="55%" stop-color="#f5f7fc"/>
+          <stop offset="100%" stop-color="#fcf7f2"/>
+        </linearGradient>
       </defs>
-      <rect width="420" height="420" fill="#0b0f19"/>
-      <rect width="420" height="420" fill="url(#glow1)"/>
-      <rect width="420" height="420" fill="url(#glow2)"/>
+      <rect width="440" height="440" fill="url(#lightCanvas)"/>
 
-      <!-- Изящный контур пиджака / куртки -->
-      <g transform="translate(38,34)" opacity="0.22" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">
-        <path d="M36 12 L72 12 L92 34 L78 48 L68 38 L68 106 L40 106 L40 38 L30 48 L16 34 Z"/>
-        <path d="M46 12 L54 42 L62 12"/>
+      <!-- Стильный бомбер / куртка (верх слева) -->
+      <g transform="translate(26,28)" opacity="0.48">
+        <path d="M36 18 C44 26 64 26 72 18 L92 34 L80 52 L70 42 L70 104 L38 104 L38 42 L28 52 L16 34 Z"
+              fill="#6366f1" stroke="#312e81" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M54 24 L54 104" stroke="#e0e7ff" stroke-width="1.8" stroke-dasharray="4 3"/>
+        <rect x="38" y="96" width="32" height="8" rx="3" fill="#4338ca"/>
+        <rect x="16" y="46" width="12" height="7" rx="2" fill="#4338ca"/>
+        <rect x="80" y="46" width="12" height="7" rx="2" fill="#4338ca"/>
       </g>
 
-      <!-- Контур платья -->
-      <g transform="translate(268,48)" opacity="0.20" fill="none" stroke="#c084fc" stroke-width="1.6" stroke-linejoin="round">
-        <path d="M42 12 L62 12 L68 34 L94 98 L16 98 L36 34 Z"/>
-        <line x1="36" y1="34" x2="68" y2="34"/>
+      <!-- Элегантное платье с поясом (верх справа) -->
+      <g transform="translate(284,34)" opacity="0.46">
+        <path d="M44 16 L64 16 L70 42 L96 104 L14 104 L38 42 Z"
+              fill="#e07a5f" stroke="#7c2d12" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M44 16 C48 26 60 26 64 16" fill="none" stroke="#7c2d12" stroke-width="1.8"/>
+        <rect x="36" y="42" width="36" height="6" rx="2" fill="#f2cc8f" stroke="#7c2d12" stroke-width="1.4"/>
       </g>
 
-      <!-- Контур рубашки -->
-      <g transform="translate(156,176)" opacity="0.20" fill="none" stroke="#38bdf8" stroke-width="1.6" stroke-linejoin="round">
-        <path d="M34 10 L50 18 L66 10 L88 30 L74 44 L66 36 L66 96 L34 96 L34 36 L26 44 L12 30 Z"/>
-        <line x1="50" y1="18" x2="50" y2="96"/>
+      <!-- Классическая рубашка с карманами (центр) -->
+      <g transform="translate(164,166)" opacity="0.44">
+        <path d="M38 14 L54 24 L70 14 L94 34 L80 50 L70 40 L70 106 L38 106 L38 40 L28 50 L14 34 Z"
+              fill="#38bdf8" stroke="#0c4a6e" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="54" y1="24" x2="54" y2="106" stroke="#0284c7" stroke-width="1.8"/>
+        <rect x="60" y="54" width="12" height="14" rx="2" fill="none" stroke="#0c4a6e" stroke-width="1.5"/>
       </g>
 
-      <!-- Контур обуви -->
-      <g transform="translate(46,294)" opacity="0.20" fill="none" stroke="#fbbf24" stroke-width="1.6" stroke-linejoin="round">
-        <path d="M10 56 L34 56 L54 28 L72 34 L86 50 L108 54 L108 66 L10 66 Z"/>
+      <!-- Стильные кроссовки (низ слева) -->
+      <g transform="translate(32,304)" opacity="0.48">
+        <path d="M10 62 L34 62 L56 30 L74 36 L88 52 L114 56 L114 68 L10 68 Z"
+              fill="#10b981" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M10 64 L114 64 L114 71 L10 71 Z" fill="#f8fafc" stroke="#064e3b" stroke-width="1.6"/>
+        <path d="M52 38 L60 44 M58 34 L66 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
       </g>
 
-      <!-- Контур сумки -->
-      <g transform="translate(274,286)" opacity="0.20" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linejoin="round">
-        <path d="M36 36 C36 14 68 14 68 36"/>
-        <rect x="22" y="36" width="60" height="52" rx="10"/>
+      <!-- Дизайнерская сумка-тоут (низ справа) -->
+      <g transform="translate(286,296)" opacity="0.48">
+        <path d="M36 42 C36 16 72 16 72 42" fill="none" stroke="#7c3aed" stroke-width="3.2"/>
+        <rect x="22" y="42" width="64" height="54" rx="10"
+              fill="#c084fc" stroke="#4c1d95" stroke-width="2"/>
+        <rect x="44" y="58" width="20" height="16" rx="3" fill="none" stroke="#4c1d95" stroke-width="1.6"/>
       </g>
     </svg>
     """.strip()
@@ -97,66 +105,65 @@ def build_editorial_bg_uri() -> str:
     return f"data:image/svg+xml;base64,{encoded}"
 
 
-BG_URI = build_editorial_bg_uri()
+BG_URI = build_stylish_light_bg_uri()
 
 st.markdown(
     f"""
     <style>
         .stApp {{
-            background-image: url("{BG_URI}");
+            background-image: linear-gradient(rgba(255, 255, 255, 0.72), rgba(248, 250, 252, 0.78)), url("{BG_URI}");
             background-repeat: repeat;
-            background-size: 420px 420px;
-            color: #f1f5f9;
+            background-size: 440px 440px;
+            color: #0f172a;
         }}
         .hero-banner {{
-            background: linear-gradient(120deg, #1e1b4b 0%, #312e81 45%, #0f766e 100%);
+            background: linear-gradient(120deg, #4f46e5 0%, #0ea5e9 55%, #10b981 100%);
             padding: 24px 28px;
-            border-radius: 20px;
+            border-radius: 22px;
             color: #ffffff;
             margin-bottom: 20px;
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            box-shadow: 0 14px 32px rgba(2, 6, 23, 0.45);
+            box-shadow: 0 12px 28px rgba(79, 70, 229, 0.20);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }}
         .hero-banner h1 {{
             color: #ffffff;
             margin: 0 0 6px 0;
-            font-size: 1.9rem;
-            font-weight: 700;
+            font-size: 1.95rem;
+            font-weight: 800;
             letter-spacing: -0.02em;
         }}
         .hero-banner p {{
             margin: 0;
-            color: #e2e8f0;
-            font-size: 0.98rem;
+            color: #f8fafc;
+            font-size: 1rem;
         }}
         .card-box {{
-            background: rgba(17, 24, 39, 0.88);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
             padding: 18px 22px;
             margin-bottom: 16px;
-            box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
-        }}
-        .card-box h2, .card-box h3, .card-box p, .card-box span, .card-box label {{
-            color: #f8fafc;
+            box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
         }}
         .swatch {{
             display: inline-block;
-            width: 22px;
-            height: 22px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            border: 1.5px solid #cbd5e1;
             vertical-align: middle;
             margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
         }}
         .stButton > button[kind="primary"] {{
-            background: linear-gradient(90deg, #4f46e5 0%, #0d9488 100%);
+            background: linear-gradient(90deg, #4f46e5 0%, #0284c7 100%);
             color: #ffffff;
             border: none;
-            border-radius: 10px;
-            padding: 0.52rem 1.35rem;
+            border-radius: 12px;
+            padding: 0.55rem 1.4rem;
             font-weight: 600;
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.24);
         }}
     </style>
     """,
