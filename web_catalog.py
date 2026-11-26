@@ -45,37 +45,54 @@ NAMED_COLORS = [
 ]
 
 
-def build_clothing_bg_data_uri() -> str:
-    """Создаёт мягкий фоновый узор с иллюстрациями одежды в SVG."""
+def build_clothing_wallpaper_uri() -> str:
+    """Создаёт красивый повторяющийся фон с иллюстрациями одежды в SVG."""
     svg = """
-    <svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
-      <rect width="320" height="320" fill="#fdf4ff"/>
-      <!-- Худи / футболка слева сверху -->
-      <g transform="translate(26,24)" opacity="0.28">
-        <path d="M24 10 L42 6 L52 16 L62 6 L80 10 L96 32 L78 44 L72 34 L72 86 L28 86 L28 34 L22 44 L4 32 Z"
-              fill="#ec4899" stroke="#be185d" stroke-width="2.5" stroke-linejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="380" height="380" viewBox="0 0 380 380">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fdf4ff"/>
+          <stop offset="50%" stop-color="#f5f3ff"/>
+          <stop offset="100%" stop-color="#fff7ed"/>
+        </linearGradient>
+      </defs>
+      <rect width="380" height="380" fill="url(#bgGrad)"/>
+
+      <!-- Карточка 1: Худи / футболка -->
+      <g transform="translate(24,22)" opacity="0.42">
+        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#f0abfc" stroke-width="2"/>
+        <path d="M32 22 L46 18 L54 26 L62 18 L76 22 L90 40 L76 50 L70 42 L70 86 L38 86 L38 42 L32 50 L18 40 Z"
+              fill="#f472b6" stroke="#be185d" stroke-width="2.2" stroke-linejoin="round"/>
       </g>
-      <!-- Платье справа сверху -->
-      <g transform="translate(185,32)" opacity="0.26">
-        <path d="M36 8 L54 8 L58 24 L82 78 L10 78 L32 24 Z"
-              fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Карточка 2: Вечернее платье -->
+      <g transform="translate(236,28)" opacity="0.42">
+        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+        <path d="M44 18 L64 18 L68 34 L88 86 L20 86 L40 34 Z"
+              fill="#a78bfa" stroke="#5b21b6" stroke-width="2.2" stroke-linejoin="round"/>
       </g>
-      <!-- Куртка / пальто по центру -->
-      <g transform="translate(112,126)" opacity="0.25">
-        <path d="M24 8 L56 8 L76 28 L66 42 L58 34 L58 92 L22 92 L22 34 L14 42 L4 28 Z"
-              fill="#3b82f6" stroke="#1d4ed8" stroke-width="2.5" stroke-linejoin="round"/>
-        <line x1="40" y1="8" x2="40" y2="92" stroke="#1d4ed8" stroke-width="2"/>
+
+      <!-- Карточка 3: Пальто / куртка по центру -->
+      <g transform="translate(136,136)" opacity="0.44">
+        <rect x="0" y="0" width="112" height="112" rx="24" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+        <path d="M38 20 L74 20 L90 38 L80 50 L72 42 L72 92 L40 92 L40 42 L32 50 L22 38 Z"
+              fill="#60a5fa" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
+        <line x1="56" y1="20" x2="56" y2="92" stroke="#1d4ed8" stroke-width="2"/>
       </g>
-      <!-- Кроссовок снизу слева -->
-      <g transform="translate(28,214)" opacity="0.26">
-        <path d="M8 46 L26 46 L42 22 L56 28 L68 42 L88 46 L88 56 L8 56 Z"
-              fill="#f59e0b" stroke="#b45309" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Карточка 4: Кроссовок снизу слева -->
+      <g transform="translate(28,248)" opacity="0.42">
+        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#fcd34d" stroke-width="2"/>
+        <path d="M18 68 L36 68 L52 44 L66 50 L78 64 L94 68 L94 78 L18 78 Z"
+              fill="#fbbf24" stroke="#b45309" stroke-width="2.2" stroke-linejoin="round"/>
       </g>
-      <!-- Сумка снизу справа -->
-      <g transform="translate(204,206)" opacity="0.26">
-        <path d="M24 28 C24 10 56 10 56 28" fill="none" stroke="#db2777" stroke-width="3.5"/>
-        <rect x="12" y="28" width="56" height="46" rx="8"
-              fill="#f472b6" stroke="#be185d" stroke-width="2.5"/>
+
+      <!-- Карточка 5: Сумка снизу справа -->
+      <g transform="translate(242,244)" opacity="0.42">
+        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#fbcfe8" stroke-width="2"/>
+        <path d="M38 44 C38 24 70 24 70 44" fill="none" stroke="#be185d" stroke-width="3.2"/>
+        <rect x="26" y="44" width="56" height="42" rx="9"
+              fill="#fb7185" stroke="#be185d" stroke-width="2.2"/>
       </g>
     </svg>
     """.strip()
@@ -83,51 +100,67 @@ def build_clothing_bg_data_uri() -> str:
     return f"data:image/svg+xml;base64,{encoded}"
 
 
-BG_URI = build_clothing_bg_data_uri()
+BG_URI = build_clothing_wallpaper_uri()
 
 st.markdown(
     f"""
     <style>
         .stApp {{
-            background-image: linear-gradient(rgba(255, 255, 255, 0.78), rgba(250, 245, 255, 0.84)), url("{BG_URI}");
+            background-image: linear-gradient(rgba(255, 255, 255, 0.58), rgba(250, 245, 255, 0.66)), url("{BG_URI}");
             background-repeat: repeat;
-            background-size: 320px 320px;
+            background-size: 380px 380px;
         }}
         .hero-banner {{
-            background: linear-gradient(135deg, #4f46e5 0%, #db2777 55%, #ea580c 100%);
-            padding: 22px 26px;
-            border-radius: 18px;
+            background: linear-gradient(125deg, #4338ca 0%, #db2777 52%, #f97316 100%);
+            padding: 24px 28px;
+            border-radius: 22px;
             color: #ffffff;
-            margin-bottom: 18px;
-            box-shadow: 0 10px 24px rgba(79, 70, 229, 0.22);
+            margin-bottom: 20px;
+            box-shadow: 0 12px 28px rgba(67, 56, 202, 0.24);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }}
         .hero-banner h1 {{
             color: #ffffff;
             margin: 0 0 6px 0;
-            font-size: 1.9rem;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }}
         .hero-banner p {{
             margin: 0;
             opacity: 0.96;
-            font-size: 0.98rem;
+            font-size: 1rem;
         }}
         .card-box {{
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(6px);
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 16px 18px;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e9d5ff;
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 22px rgba(88, 28, 135, 0.06);
         }}
         .swatch {{
             display: inline-block;
             width: 24px;
             height: 24px;
-            border-radius: 7px;
-            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            border: 1.5px solid #cbd5e1;
             vertical-align: middle;
-            margin-right: 8px;
+            margin-right: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }}
+        .stButton > button[kind="primary"] {{
+            background: linear-gradient(90deg, #4f46e5 0%, #db2777 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 0.55rem 1.4rem;
+            font-weight: 600;
+            box-shadow: 0 6px 16px rgba(219, 39, 119, 0.25);
+        }}
+        .stButton > button[kind="primary"]:hover {{
+            filter: brightness(1.05);
         }}
     </style>
     """,
@@ -273,7 +306,6 @@ def load_catalog_and_model():
     x_train = torch.tensor(cat_arr, dtype=torch.float32).unsqueeze(1) / 255.0
     y_train = torch.tensor(catalog_labels, dtype=torch.long)
 
-    # Быстрое обучение на выборке каталога, чтобы сеть выделяла признаки классов
     optimizer = torch.optim.Adam(model.parameters(), lr=0.005)
     criterion = nn.CrossEntropyLoss()
     model.train()
@@ -312,7 +344,6 @@ def run_prediction(
         for val, idx in zip(top3_vals, top3_idxs)
     ]
 
-    # Убираем совсем слабые случайные варианты ниже 8%, оставляя минимум главный вариант
     filtered_top3 = [item for item in raw_top3 if item[1] >= 8.0]
     if not filtered_top3:
         filtered_top3 = [raw_top3[0]]
@@ -343,7 +374,7 @@ def run_prediction(
 st.markdown(
     """
     <div class="hero-banner">
-        <h1>👗 Помощник каталога одежды — Fashion-MNIST</h1>
+        <h1>✨ Помощник каталога одежды — Fashion-MNIST</h1>
         <p>Подготовка 28×28 в оттенках серого, определение цветов, категории, 5 похожих предметов и очередь исправлений</p>
     </div>
     """,
@@ -359,7 +390,7 @@ with st.sidebar:
         """
         **Что проверяется на защите:**
         1. Исходное фото и подготовленное **28×28 (grayscale)**.
-        2. Предполагаемые категории (**Топ-3**, слабые шумовые варианты ниже 8% отсекаются).
+        2. Предполагаемые категории (**Топ-3**, слабые варианты ниже 8% отсекаются).
         3. **5 похожих изображений** из каталога и отметка ошибки.
         4. Неподдерживаемый файл (например `.txt`, `.pdf`, `.csv`).
         """
@@ -374,6 +405,7 @@ tab_main, tab_queue = st.tabs(
 )
 
 with tab_main:
+    st.markdown('<div class="card-box">', unsafe_allow_html=True)
     st.subheader("1. Выбор или загрузка изображения")
     input_mode = st.radio(
         "Источник изображения:",
@@ -414,6 +446,7 @@ with tab_main:
         raw_image = Image.open(BytesIO(camera_file.getvalue()))
 
     if raw_image is not None:
+        st.write("")
         recognize_btn = st.button("Распознать", type="primary")
         if recognize_btn or st.session_state.current_analysis is not None:
             if recognize_btn:
@@ -428,80 +461,83 @@ with tab_main:
                     "top3": top3,
                     "similar_items": similar_items,
                 }
+    st.markdown("</div>", unsafe_allow_html=True)
 
-            res = st.session_state.current_analysis
+    if raw_image is not None and st.session_state.current_analysis is not None:
+        res = st.session_state.current_analysis
 
-            st.markdown('<div class="card-box">', unsafe_allow_html=True)
-            st.subheader("2. Исходное изображение и подготовка 28×28")
-            c1, c2, c3 = st.columns([1.2, 1, 1.3], gap="medium")
+        st.markdown('<div class="card-box">', unsafe_allow_html=True)
+        st.subheader("2. Исходное изображение и подготовка 28×28")
+        c1, c2, c3 = st.columns([1.2, 1, 1.3], gap="medium")
 
-            with c1:
-                st.markdown("**Исходное изображение**")
-                st.image(res["raw_image"], use_container_width=True)
+        with c1:
+            st.markdown("**Исходное изображение**")
+            st.image(res["raw_image"], use_container_width=True)
 
-            with c2:
-                st.markdown("**Подготовленное (28×28, grayscale)**")
+        with c2:
+            st.markdown("**Подготовленное (28×28, grayscale)**")
+            st.image(
+                res["prep_28"].resize((196, 196), Image.Resampling.NEAREST),
+                caption="Масштаб 196×196 для просмотра (реальный вход: 28×28)",
+                use_container_width=True,
+            )
+
+        with c3:
+            st.markdown("**Основные цвета предмета**")
+            for col_info in res["colors"]:
+                st.markdown(
+                    f"<div style='margin-bottom:8px;'>"
+                    f"<span class='swatch' style='background:{col_info['hex']};'></span>"
+                    f"<b>{col_info['name']}</b> — <code>{col_info['hex']}</code> ({col_info['percent']}%)"
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="card-box">', unsafe_allow_html=True)
+        st.subheader("3. Предполагаемые категории")
+        for rank, (cat_name, pct) in enumerate(res["top3"], start=1):
+            st.write(f"**{rank}. {cat_name}** — `{pct}%`")
+            st.progress(min(max(pct / 100.0, 0.0), 1.0))
+
+        st.markdown("---")
+        st.markdown("**Ответ неверный? Отправьте пример в очередь исправлений:**")
+        col_err1, col_err2 = st.columns([2, 1])
+        with col_err1:
+            true_label = st.selectbox(
+                "Выберите правильную категорию:",
+                FASHION_CLASSES,
+                key="true_label_select",
+            )
+        with col_err2:
+            st.write("")
+            st.write("")
+            if st.button("Отметить неверный ответ"):
+                st.session_state.correction_queue.append(
+                    {
+                        "Файл": res["file_name"],
+                        "Предсказано (Топ-1)": f"{res['top3'][0][0]} ({res['top3'][0][1]}%)",
+                        "Правильная категория": true_label,
+                        "Цвет": res["colors"][0]["name"] if res["colors"] else "—",
+                    }
+                )
+                st.success("Пример добавлен в «Очередь исправлений»!")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="card-box">', unsafe_allow_html=True)
+        st.subheader("4. Пять похожих изображений из обучающего каталога")
+        sim_cols = st.columns(5)
+        for idx, item in enumerate(res["similar_items"]):
+            with sim_cols[idx]:
                 st.image(
-                    res["prep_28"].resize((196, 196), Image.Resampling.NEAREST),
-                    caption="Масштаб 196×196 для просмотра (реальный вход: 28×28)",
+                    Image.fromarray(item["image"]).resize((140, 140), Image.Resampling.NEAREST),
                     use_container_width=True,
                 )
-
-            with c3:
-                st.markdown("**Основные цвета предмета**")
-                for col_info in res["colors"]:
-                    st.markdown(
-                        f"<div style='margin-bottom:8px;'>"
-                        f"<span class='swatch' style='background:{col_info['hex']};'></span>"
-                        f"<b>{col_info['name']}</b> — <code>{col_info['hex']}</code> ({col_info['percent']}%)"
-                        f"</div>",
-                        unsafe_allow_html=True,
-                    )
-            st.markdown("</div>", unsafe_allow_html=True)
-
-            st.markdown('<div class="card-box">', unsafe_allow_html=True)
-            st.subheader("3. Предполагаемые категории")
-            for rank, (cat_name, pct) in enumerate(res["top3"], start=1):
-                st.write(f"**{rank}. {cat_name}** — `{pct}%`")
-                st.progress(min(max(pct / 100.0, 0.0), 1.0))
-
-            st.markdown("---")
-            st.markdown("**Ответ неверный? Отправьте пример в очередь исправлений:**")
-            col_err1, col_err2 = st.columns([2, 1])
-            with col_err1:
-                true_label = st.selectbox(
-                    "Выберите правильную категорию:",
-                    FASHION_CLASSES,
-                    key="true_label_select",
-                )
-            with col_err2:
-                st.write("")
-                st.write("")
-                if st.button("Отметить неверный ответ"):
-                    st.session_state.correction_queue.append(
-                        {
-                            "Файл": res["file_name"],
-                            "Предсказано (Топ-1)": f"{res['top3'][0][0]} ({res['top3'][0][1]}%)",
-                            "Правильная категория": true_label,
-                            "Цвет": res["colors"][0]["name"] if res["colors"] else "—",
-                        }
-                    )
-                    st.success("Пример добавлен в «Очередь исправлений»!")
-            st.markdown("</div>", unsafe_allow_html=True)
-
-            st.markdown('<div class="card-box">', unsafe_allow_html=True)
-            st.subheader("4. Пять похожих изображений из обучающего каталога")
-            sim_cols = st.columns(5)
-            for idx, item in enumerate(res["similar_items"]):
-                with sim_cols[idx]:
-                    st.image(
-                        Image.fromarray(item["image"]).resize((140, 140), Image.Resampling.NEAREST),
-                        use_container_width=True,
-                    )
-                    st.caption(f"**{item['label']}**\nСхожесть (дист.): `{item['distance']}`")
-            st.markdown("</div>", unsafe_allow_html=True)
+                st.caption(f"**{item['label']}**\nСхожесть (дист.): `{item['distance']}`")
+        st.markdown("</div>", unsafe_allow_html=True)
 
 with tab_queue:
+    st.markdown('<div class="card-box">', unsafe_allow_html=True)
     st.subheader("Очередь исправлений для дообучения и проверки")
     if not st.session_state.correction_queue:
         st.info("Очередь пока пуста. Нажмите «Отметить неверный ответ» после распознавания, чтобы сохранить пример.")
@@ -510,3 +546,4 @@ with tab_queue:
         if st.button("Очистить очередь"):
             st.session_state.correction_queue = []
             st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
