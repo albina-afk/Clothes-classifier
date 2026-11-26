@@ -10,7 +10,7 @@ import torch.nn.functional as F
 
 st.set_page_config(
     page_title="Помощник каталога одежды (Fashion-MNIST)",
-    page_icon="👗",
+    page_icon="🧥",
     layout="wide",
 )
 
@@ -45,54 +45,51 @@ NAMED_COLORS = [
 ]
 
 
-def build_clothing_wallpaper_uri() -> str:
-    """Создаёт красивый повторяющийся фон с иллюстрациями одежды в SVG."""
+def build_editorial_bg_uri() -> str:
+    """Создаёт стильный тёмный фон с изящными силуэтами одежды и мягким свечением."""
     svg = """
-    <svg xmlns="http://www.w3.org/2000/svg" width="380" height="380" viewBox="0 0 380 380">
+    <svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420">
       <defs>
-        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fdf4ff"/>
-          <stop offset="50%" stop-color="#f5f3ff"/>
-          <stop offset="100%" stop-color="#fff7ed"/>
-        </linearGradient>
+        <radialGradient id="glow1" cx="22%" cy="24%" r="45%">
+          <stop offset="0%" stop-color="#6366f1" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#0b0f19" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow2" cx="80%" cy="72%" r="50%">
+          <stop offset="0%" stop-color="#10b981" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#0b0f19" stop-opacity="0"/>
+        </radialGradient>
       </defs>
-      <rect width="380" height="380" fill="url(#bgGrad)"/>
+      <rect width="420" height="420" fill="#0b0f19"/>
+      <rect width="420" height="420" fill="url(#glow1)"/>
+      <rect width="420" height="420" fill="url(#glow2)"/>
 
-      <!-- Карточка 1: Худи / футболка -->
-      <g transform="translate(24,22)" opacity="0.42">
-        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#f0abfc" stroke-width="2"/>
-        <path d="M32 22 L46 18 L54 26 L62 18 L76 22 L90 40 L76 50 L70 42 L70 86 L38 86 L38 42 L32 50 L18 40 Z"
-              fill="#f472b6" stroke="#be185d" stroke-width="2.2" stroke-linejoin="round"/>
+      <!-- Изящный контур пиджака / куртки -->
+      <g transform="translate(38,34)" opacity="0.22" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M36 12 L72 12 L92 34 L78 48 L68 38 L68 106 L40 106 L40 38 L30 48 L16 34 Z"/>
+        <path d="M46 12 L54 42 L62 12"/>
       </g>
 
-      <!-- Карточка 2: Вечернее платье -->
-      <g transform="translate(236,28)" opacity="0.42">
-        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
-        <path d="M44 18 L64 18 L68 34 L88 86 L20 86 L40 34 Z"
-              fill="#a78bfa" stroke="#5b21b6" stroke-width="2.2" stroke-linejoin="round"/>
+      <!-- Контур платья -->
+      <g transform="translate(268,48)" opacity="0.20" fill="none" stroke="#c084fc" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M42 12 L62 12 L68 34 L94 98 L16 98 L36 34 Z"/>
+        <line x1="36" y1="34" x2="68" y2="34"/>
       </g>
 
-      <!-- Карточка 3: Пальто / куртка по центру -->
-      <g transform="translate(136,136)" opacity="0.44">
-        <rect x="0" y="0" width="112" height="112" rx="24" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
-        <path d="M38 20 L74 20 L90 38 L80 50 L72 42 L72 92 L40 92 L40 42 L32 50 L22 38 Z"
-              fill="#60a5fa" stroke="#1d4ed8" stroke-width="2.2" stroke-linejoin="round"/>
-        <line x1="56" y1="20" x2="56" y2="92" stroke="#1d4ed8" stroke-width="2"/>
+      <!-- Контур рубашки -->
+      <g transform="translate(156,176)" opacity="0.20" fill="none" stroke="#38bdf8" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M34 10 L50 18 L66 10 L88 30 L74 44 L66 36 L66 96 L34 96 L34 36 L26 44 L12 30 Z"/>
+        <line x1="50" y1="18" x2="50" y2="96"/>
       </g>
 
-      <!-- Карточка 4: Кроссовок снизу слева -->
-      <g transform="translate(28,248)" opacity="0.42">
-        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#fcd34d" stroke-width="2"/>
-        <path d="M18 68 L36 68 L52 44 L66 50 L78 64 L94 68 L94 78 L18 78 Z"
-              fill="#fbbf24" stroke="#b45309" stroke-width="2.2" stroke-linejoin="round"/>
+      <!-- Контур обуви -->
+      <g transform="translate(46,294)" opacity="0.20" fill="none" stroke="#fbbf24" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M10 56 L34 56 L54 28 L72 34 L86 50 L108 54 L108 66 L10 66 Z"/>
       </g>
 
-      <!-- Карточка 5: Сумка снизу справа -->
-      <g transform="translate(242,244)" opacity="0.42">
-        <rect x="0" y="0" width="108" height="108" rx="22" fill="#ffffff" stroke="#fbcfe8" stroke-width="2"/>
-        <path d="M38 44 C38 24 70 24 70 44" fill="none" stroke="#be185d" stroke-width="3.2"/>
-        <rect x="26" y="44" width="56" height="42" rx="9"
-              fill="#fb7185" stroke="#be185d" stroke-width="2.2"/>
+      <!-- Контур сумки -->
+      <g transform="translate(274,286)" opacity="0.20" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M36 36 C36 14 68 14 68 36"/>
+        <rect x="22" y="36" width="60" height="52" rx="10"/>
       </g>
     </svg>
     """.strip()
@@ -100,67 +97,66 @@ def build_clothing_wallpaper_uri() -> str:
     return f"data:image/svg+xml;base64,{encoded}"
 
 
-BG_URI = build_clothing_wallpaper_uri()
+BG_URI = build_editorial_bg_uri()
 
 st.markdown(
     f"""
     <style>
         .stApp {{
-            background-image: linear-gradient(rgba(255, 255, 255, 0.58), rgba(250, 245, 255, 0.66)), url("{BG_URI}");
+            background-image: url("{BG_URI}");
             background-repeat: repeat;
-            background-size: 380px 380px;
+            background-size: 420px 420px;
+            color: #f1f5f9;
         }}
         .hero-banner {{
-            background: linear-gradient(125deg, #4338ca 0%, #db2777 52%, #f97316 100%);
+            background: linear-gradient(120deg, #1e1b4b 0%, #312e81 45%, #0f766e 100%);
             padding: 24px 28px;
-            border-radius: 22px;
+            border-radius: 20px;
             color: #ffffff;
             margin-bottom: 20px;
-            box-shadow: 0 12px 28px rgba(67, 56, 202, 0.24);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 14px 32px rgba(2, 6, 23, 0.45);
         }}
         .hero-banner h1 {{
             color: #ffffff;
             margin: 0 0 6px 0;
-            font-size: 2rem;
-            font-weight: 800;
+            font-size: 1.9rem;
+            font-weight: 700;
             letter-spacing: -0.02em;
         }}
         .hero-banner p {{
             margin: 0;
-            opacity: 0.96;
-            font-size: 1rem;
+            color: #e2e8f0;
+            font-size: 0.98rem;
         }}
         .card-box {{
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border: 1px solid #e9d5ff;
-            border-radius: 20px;
+            background: rgba(17, 24, 39, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 18px;
             padding: 18px 22px;
             margin-bottom: 16px;
-            box-shadow: 0 8px 22px rgba(88, 28, 135, 0.06);
+            box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
+        }}
+        .card-box h2, .card-box h3, .card-box p, .card-box span, .card-box label {{
+            color: #f8fafc;
         }}
         .swatch {{
             display: inline-block;
-            width: 24px;
-            height: 24px;
-            border-radius: 8px;
-            border: 1.5px solid #cbd5e1;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
             vertical-align: middle;
             margin-right: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }}
         .stButton > button[kind="primary"] {{
-            background: linear-gradient(90deg, #4f46e5 0%, #db2777 100%);
+            background: linear-gradient(90deg, #4f46e5 0%, #0d9488 100%);
             color: #ffffff;
             border: none;
-            border-radius: 12px;
-            padding: 0.55rem 1.4rem;
+            border-radius: 10px;
+            padding: 0.52rem 1.35rem;
             font-weight: 600;
-            box-shadow: 0 6px 16px rgba(219, 39, 119, 0.25);
-        }}
-        .stButton > button[kind="primary"]:hover {{
-            filter: brightness(1.05);
         }}
     </style>
     """,
@@ -181,10 +177,10 @@ class SimpleClothesCNN(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=3, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2),  # 14x14
+            nn.MaxPool2d(2),
             nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2),  # 7x7
+            nn.MaxPool2d(2),
         )
         self.fc = nn.Sequential(
             nn.Flatten(),
@@ -241,7 +237,7 @@ def prepare_fashion_28x28(image: Image.Image) -> Image.Image:
 
 
 def _make_synthetic_item(class_idx: int, variant: int) -> np.ndarray:
-    """Создаёт наглядный шаблон 28x28 для выбранного класса каталога."""
+    """Создаёт шаблон 28x28 для выбранного класса каталога."""
     img = Image.new("L", (28, 28), color=235)
     draw = ImageDraw.Draw(img)
     shade = 55 + ((variant * 23) % 95)
@@ -374,7 +370,7 @@ def run_prediction(
 st.markdown(
     """
     <div class="hero-banner">
-        <h1>✨ Помощник каталога одежды — Fashion-MNIST</h1>
+        <h1>🧥 Помощник каталога одежды — Fashion-MNIST</h1>
         <p>Подготовка 28×28 в оттенках серого, определение цветов, категории, 5 похожих предметов и очередь исправлений</p>
     </div>
     """,
